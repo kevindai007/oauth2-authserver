@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: oauth2-authserver
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST}:5432/authserver?useSSL=false
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  main:
+    allow-circular-references: true
+
+server:
+  port: 8081
+
+logging:
+  level:
+    org.springframework.security.oauth2: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework.security: DEBUG
+    org:
+      springframework:
+        security: DEBUG
