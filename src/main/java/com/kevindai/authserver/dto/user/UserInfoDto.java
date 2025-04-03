@@ -19,4 +19,6 @@ public class UserInfoDto {
     private String email;
     private Date createdTime;
     private Date updateTime;
+    private String sub;
+
 }

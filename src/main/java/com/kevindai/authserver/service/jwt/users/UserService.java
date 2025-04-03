@@ -52,6 +52,7 @@ public class UserService implements UserDetailsService {
                 .email(usersEntity.getEmail())
                 .createdTime(usersEntity.getCreatedTime())
                 .updateTime(usersEntity.getUpdateTime())
+                .sub(usersEntity.getUsername())
                 .build();
     }
 
