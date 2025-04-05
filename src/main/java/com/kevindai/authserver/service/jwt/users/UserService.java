@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * this class is used to implement the UserDetailsService interface
@@ -26,6 +28,7 @@ import java.util.List;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PermissionService permissionService;
+    private final UserClaimService userClaimService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -82,6 +85,16 @@ public class UserService implements UserDetailsService {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             UserInfoDto userInfo = getUserInfo(userDetails.getUsername());
             return userInfo;
+        }
+        return null;
+    }
+
+    public Map<String, Object> getOIDCUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserPrincipal user) {
+            // Here we assume scopes should include both profile and email — adjust as needed
+            Set<String> scopes = Set.of("profile", "email");
+            return userClaimService.getUserClaims(user, scopes);
         }
         return null;
     }

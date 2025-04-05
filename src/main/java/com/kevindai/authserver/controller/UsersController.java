@@ -15,6 +15,7 @@ public class UsersController {
     private final UserService userService;
     private final UsersService usersService;
 
+
     /**
      * get current user info
      *
@@ -24,6 +25,7 @@ public class UsersController {
     public UserInfoDto getUserInfo() {
         return userService.getCurrentUser();
     }
+
 //
 //    @PostMapping("/login")
 //    public UsersLoginResponseDto login(@RequestBody @Valid UsersLoginRequestDto usersLoginRequestDto) {
